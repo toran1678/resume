@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://toran1678.github.io/resume",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
