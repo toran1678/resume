@@ -166,8 +166,8 @@
 }
 
 .photoPlaceholder {
-  width: 200px;
-  height: 250px;
+  width: 240px;
+  height: 295px;
   background-color: var(--color-bg-light);
   border: 2px dashed var(--color-border);
   border-radius: 8px;
@@ -936,8 +936,8 @@
   }
   
   .photoPlaceholder {
-    width: 150px;
-    height: 180px;
+    width: 180px;
+    height: 220px;
   }
   
   .infoSection {

@@ -32,7 +32,8 @@ function Portfolio() {
   const location = "경기 안양시";
   const portfolio = "https://toran1678.github.io/my-blog";
   const birthYear = 2001;
-  const age = 24;
+  const birthDate = "4월 19일";
+  //const age = 24;
   // public 폴더의 이미지는 절대 경로로 접근 (base 경로 자동 처리)
   const photoPath = import.meta.env.BASE_URL + "images/profile.jpg";
   const bannerImagePath = import.meta.env.BASE_URL + "images/banner.png";
@@ -82,20 +83,24 @@ function Portfolio() {
         }
       ]
     },
-    {
-      school: "인천정보산업고등학교",
-      major: "전산과",
-      period: "2017.03 ~ 2020.02",
-      status: "졸업",
-      type: "전문(실업)계",
-      projects: [
-        {
-          title: "Super Hexagon 게임 모작",
-          description: "구글 플레이스토어 출시 완료"
-        }
-      ]
-    }
+    // {
+    //   school: "인천정보산업고등학교",
+    //   major: "전산과",
+    //   period: "2017.03 ~ 2020.02",
+    //   status: "졸업",
+    //   type: "전문(실업)계",
+    //   projects: [
+    //     {
+    //       title: "Super Hexagon 게임 모작",
+    //       description: "구글 플레이스토어 출시 완료"
+    //     }
+    //   ]
+    // }
   ];
+
+  const universityLabel = education?.[0]
+    ? `${education[0].school} (${education[0].major})`
+    : "";
 
   // 기술 스택 (카테고리 분리)
   const skillGroups = [
@@ -297,9 +302,37 @@ function Portfolio() {
             <div className={styles.infoSection}>
               <div className={styles.nameSection}>
                 <h2 className={styles.name}>{name}</h2>
-                <span className={styles.age}>({birthYear}년생, 만 {age}세)</span>
               </div>
               <div className={styles.info}>
+                <div className={styles.infoItem}>
+                  <svg className={styles.icon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 4h18"></path>
+                    <path d="M8 2v4"></path>
+                    <path d="M16 2v4"></path>
+                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                    <path d="M8 14h.01"></path>
+                    <path d="M12 14h.01"></path>
+                    <path d="M16 14h.01"></path>
+                  </svg>
+                  <span className={styles.infoContent}>
+                    <span className={styles.label}>생년월일</span>
+                    <span className={styles.value}>{birthYear}년 {birthDate}</span>
+                  </span>
+                </div>
+
+                {universityLabel && (
+                  <div className={styles.infoItem}>
+                    <svg className={styles.icon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 10L12 5 2 10l10 5 10-5z"></path>
+                      <path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"></path>
+                    </svg>
+                    <span className={styles.infoContent}>
+                      <span className={styles.label}>학력</span>
+                      <span className={styles.value}>{universityLabel}</span>
+                    </span>
+                  </div>
+                )}
+
                 <div className={styles.infoItem}>
                   <svg className={styles.icon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
