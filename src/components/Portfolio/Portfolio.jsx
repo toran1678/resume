@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Portfolio.module.css';
 
 function Portfolio() {
@@ -35,7 +35,7 @@ function Portfolio() {
   const age = 24;
   // public 폴더의 이미지는 절대 경로로 접근 (base 경로 자동 처리)
   const photoPath = import.meta.env.BASE_URL + "images/profile.jpg";
-  const bannerImagePath = import.meta.env.BASE_URL; //+ "images/banner.png";
+  const bannerImagePath = import.meta.env.BASE_URL + "images/banner.png";
 
   // 경력
   const experience = [
@@ -97,12 +97,108 @@ function Portfolio() {
     }
   ];
 
-  // 기술 스택
-  const skills = [
-    "백엔드/서버개발", "ReactJS", "Java", "MySQL", "웹개발",
-    "프론트엔드", "Python", "React", "Redis", "DevOps",
-    "FastAPI", "Git", "GitHub"
+  // 기술 스택 (카테고리 분리)
+  const skillGroups = [
+    {
+      title: "Language",
+      variant: "language",
+      items: ["JavaScript", "TypeScript", "Python", "Java", "C/C++"]
+    },
+    {
+      title: "Frontend",
+      variant: "frontend",
+      items: ["React", "VITE", "HTML", "CSS"]
+    },
+    {
+      title: "Backend",
+      variant: "backend",
+      items: ["FastAPI", "MySQL", "Redis"]
+    },
+    {
+      title: "DevOps",
+      variant: "devops",
+      items: ["DevOps", "Docker", "Git", "GitHub"]
+    },
+    {
+      title: "Tools",
+      variant: "tools",
+      items: ["Figma", "Obsidian", "VS Code"]
+    }
   ];
+
+  const skillPillVariants = {
+    JavaScript: "javascript",
+    TypeScript: "typescript",
+    Python: "python",
+    Java: "java",
+    "C/C++": "ccpp",
+    React: "react",
+    VITE: "vite",
+    HTML: "html",
+    CSS: "css",
+    FastAPI: "fastapi",
+    MySQL: "mysql",
+    Redis: "redis",
+    Git: "git",
+    GitHub: "github",
+    DevOps: "devops",
+    Docker: "docker",
+    Figma: "figma",
+    Obsidian: "obsidian",
+    "VS Code": "vscode"
+  };
+
+  const SkillGroupIcon = ({ variant }) => {
+    switch (variant) {
+      case "language":
+        return (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.categoryIcon} aria-hidden="true">
+            <rect width="18" height="18" x="3" y="3" rx="2" />
+            <path d="m10 15-3-3 3-3" />
+            <path d="m14 9 3 3-3 3" />
+          </svg>
+        );
+      case "frontend":
+        return (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+            <path d="M7 20h10"></path>
+            <path d="M12 18v2"></path>
+          </svg>
+        );
+      case "backend":
+        return (
+          <svg width="24px" height="24px" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.categoryIcon} aria-hidden="true">
+            <path d="M4 6V12C4 12 4 15 11 15C18 15 18 12 18 12V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M11 3C18 3 18 6 18 6C18 6 18 9 11 9C4 9 4 6 4 6C4 6 4 3 11 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M11 21C4 21 4 18 4 18V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M18 22H19.5H21M19.5 19.4286H21.8333V16H17.1666V19.4286H19.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        );
+      case "devops":
+        return (
+          <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" className={styles.categoryIcon} aria-hidden="true">
+            <title>dev-ops-solid</title>
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="invisible_box" data-name="invisible box">
+                <rect width="48" height="48" fill="none" />
+              </g>
+              <g id="icons_Q2" data-name="icons Q2">
+                <path d="M46,24A12,12,0,0,0,34,12c-5.2,0-9.5,4.1-11.9,11.4C20.3,28.9,17.3,32,14,32a8,8,0,0,1,0-16h1.2l-1.6,1.6a1.9,1.9,0,0,0,.2,3,2.1,2.1,0,0,0,2.7-.2l4.9-5a1.9,1.9,0,0,0,0-2.8l-4.9-5a2.1,2.1,0,0,0-2.7-.2,1.9,1.9,0,0,0-.2,3L15.2,12H14a12,12,0,0,0,0,24c5.2,0,9.5-4.1,11.9-11.4C27.7,19.1,30.7,16,34,16a8,8,0,0,1,0,16H32.8l1.6-1.6a1.9,1.9,0,0,0-.2-3,2.1,2.1,0,0,0-2.7.2l-4.9,5a1.9,1.9,0,0,0,0,2.8l4.9,5a2.1,2.1,0,0,0,2.7.2,1.9,1.9,0,0,0,.2-3L32.8,36H34A12,12,0,0,0,46,24Z" fill="currentColor" />
+              </g>
+            </g>
+          </svg>
+        );
+      case "tools":
+        return (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2 2-2-2 2-2z"></path>
+          </svg>
+        );
+      default:
+        return null;
+    }
+  };
 
   // 자격증
   const certifications = [
@@ -148,14 +244,12 @@ function Portfolio() {
           <h1 className={styles.bannerName}>- {bannerName} -</h1>
           <p className={styles.bannerSubtitle}>
             {displayedSubtitle}
-            {displayedSubtitle.length < bannerSubtitle.length && <span className={styles.cursor}>|</span>}
+            <span className={styles.cursor}>|</span>
           </p>
-          <div className={styles.bannerDivider}></div>
           <div className={styles.bannerContent}>
+            <p className={styles.bannerGreeting}>{bannerGreeting}</p>
             <p className={styles.bannerDescription}>
-              {bannerGreeting}<br />
-              {bannerDescription}
-              <span className={styles.bannerNameInline}>{bannerName}</span>{bannerEnding}
+              {bannerDescription} <span className={styles.bannerNameInline}>{bannerName}</span>{bannerEnding}
             </p>
           </div>
           <button 
@@ -174,7 +268,7 @@ function Portfolio() {
                 });
               }
             }}
-            >
+          >
             더 알아보기{' '}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: '4px' }}>
               <polyline points="6 9 12 15 18 9"></polyline>
@@ -327,9 +421,26 @@ function Portfolio() {
           {/* 기술 스택 */}
           <section id="skills" className={styles.section}>
             <h2 className={styles.sectionTitle}>기술 스택</h2>
-            <div className={styles.skillsContainer}>
-              {skills.map((skill, index) => (
-                <span key={index} className={styles.skillTag}>{skill}</span>
+            <div className={styles.skillsPanel}>
+              {skillGroups.map((group) => (
+                <div key={group.title} className={styles.skillRow}>
+                  <div className={styles.skillRowHeader}>
+                    <span className={`${styles.skillGroupIcon} ${styles[`skillGroupIcon--${group.variant}`] ?? ''}`}>
+                      <SkillGroupIcon variant={group.variant} />
+                    </span>
+                    <span className={styles.skillRowTitle}>{group.title}</span>
+                  </div>
+                  <div className={styles.skillRowBody}>
+                    {group.items.map((item) => (
+                      <span
+                        key={`${group.title}-${item}`}
+                        className={`${styles.skillPill} ${styles[`skillPill--${skillPillVariants[item] ?? 'default'}`] ?? ''}`}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </section>

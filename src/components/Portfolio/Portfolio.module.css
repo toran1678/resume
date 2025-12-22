@@ -1,5 +1,5 @@
 .portfolio {
-  padding-top: 70px; /* 헤더 높이 */
+  padding-top: 0; /* 헤더는 fixed이므로 배너가 페이지 최상단에 붙도록 */
 }
 
 /* 배너 */
@@ -9,7 +9,8 @@
   background-position: center;
   background-repeat: no-repeat;
   color: var(--color-text);
-  padding: var(--spacing-2xl) var(--spacing-md);
+  /* 헤더가 배너 위에 겹치므로, 배너 "내용"만 헤더 높이만큼 아래로 */
+  padding: calc(70px + var(--spacing-2xl)) var(--spacing-md) var(--spacing-2xl);
   text-align: center;
   position: relative;
   display: flex;
@@ -25,7 +26,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(107, 84, 57, 0.8);
+  background: rgba(102, 90, 79, 0.8);
   z-index: 0;
 }
 
@@ -52,6 +53,37 @@
   margin-bottom: var(--spacing-lg);
   color: rgba(255, 255, 255, 0.9);
   letter-spacing: 0.02em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--spacing-sm);
+}
+
+.bannerSubtitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #f2d2a9, #caa574);
+  border-radius: 2px;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
 }
 
 .bannerDivider {
@@ -62,7 +94,7 @@
 }
 
 .bannerContent {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
 }
 
 .bannerGreeting {
@@ -83,22 +115,6 @@
 .bannerNameInline {
   font-weight: 600;
   color: #ffffff;
-}
-
-.cursor {
-  display: inline-block;
-  margin-left: 2px;
-  animation: blink 1s infinite;
-  color: #ffffff;
-}
-
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
 }
 
 .bannerButton {
@@ -140,6 +156,7 @@
   display: flex;
   gap: var(--spacing-2xl);
   align-items: flex-start;
+  justify-content: center; /* 전체 블록은 가운데로, 내부 텍스트 정렬은 유지 */
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -176,7 +193,8 @@
 }
 
 .infoSection {
-  flex: 1;
+  flex: 0 1 520px; /* flex:1(가로 늘림) 때문에 왼쪽으로 쏠려 보이는 현상 방지 */
+  max-width: 520px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -328,14 +346,27 @@
 .experienceItem {
   padding: var(--spacing-lg);
   background-color: var(--color-bg-light);
-  border-radius: 8px;
-  border-left: 4px solid var(--color-primary);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.experienceItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(74, 144, 226, 0.9), rgba(202, 165, 116, 0.9));
 }
 
 .experienceItem:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
 }
 
 .experienceHeader {
@@ -416,7 +447,206 @@
   padding: var(--spacing-lg);
   background-color: var(--color-bg-light);
   border-radius: 8px;
-  border-left: 4px solid var(--color-primary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.educationItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(74, 144, 226, 0.9), rgba(255, 140, 66, 0.7));
+}
+
+/* 기술 스택 (한 박스 + row) */
+.skillsPanel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(250, 250, 250, 0.82) 100%);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.10);
+}
+
+.skillRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+}
+
+.skillRow + .skillRow {
+  border-top: 1px solid rgba(17, 24, 39, 0.06);
+}
+
+.skillRowHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.skillRowTitle {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.skillGroupIcon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light);
+}
+
+.skillGroupIcon svg {
+  display: block;
+}
+
+.categoryIcon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.skillGroupIcon--language { color: #8e44ad; }
+.skillGroupIcon--frontend { color: #4A90E2; }
+.skillGroupIcon--backend { color: #27ae60; }
+.skillGroupIcon--devops { color: #f39c12; }
+.skillGroupIcon--tools { color: #34495e; }
+
+.skillRowBody {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.skillPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  will-change: transform;
+  cursor: default;
+}
+
+.skillPill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+  filter: brightness(1.06) saturate(1.05);
+}
+
+/* 개별 기술 태그 색상 */
+.skillPill--default {
+  background: #6b7280;
+}
+
+.skillPill--javascript {
+  background: #f7df1e;
+  color: #111111; /* 노란색은 검정 텍스트 */
+}
+.skillPill--typescript {
+  background: #3178c6;
+}
+.skillPill--python {
+  background: #3776ab;
+}
+.skillPill--java {
+  background: #e24a3b;
+}
+.skillPill--react {
+  background: #0ea5e9;
+  color: #ffffff;
+}
+.skillPill--vite {
+  background: #a855f7;
+}
+.skillPill--fastapi {
+  background: #059669;
+}
+.skillPill--mysql {
+  background: #00618a;
+}
+.skillPill--redis {
+  background: #dc2626;
+}
+.skillPill--git {
+  background: #f05033;
+}
+.skillPill--github {
+  background: #111827;
+}
+.skillPill--devops {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.skillPill--ccpp {
+  background: #64748b;
+  color: #ffffff;
+}
+
+.skillPill--html {
+  background: #e34f26;
+  color: #ffffff;
+}
+
+.skillPill--css {
+  background: #1572b6;
+  color: #ffffff;
+}
+
+.skillPill--docker {
+  background: #2496ed;
+  color: #ffffff;
+}
+
+.skillPill--figma {
+  background: #a259ff;
+  color: #ffffff;
+}
+
+.skillPill--obsidian {
+  background: #6c31e3;
+  color: #ffffff;
+}
+
+.skillPill--vscode {
+  background: #007acc;
+  color: #ffffff;
+}
+.skillPill--web {
+  background: #3b82f6;
+}
+.skillPill--frontend {
+  background: #4a90e2;
+}
+.skillPill--backend {
+  background: #22c55e;
+}
+
+@media (max-width: 768px) {
+  .skillRow {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .skillRowHeader {
+    min-width: 0;
+  }
 }
 
 .educationHeader {
@@ -506,7 +736,19 @@
   padding: var(--spacing-sm);
   background-color: white;
   border-radius: 4px;
-  border-left: 3px solid var(--color-primary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.detail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(74, 144, 226, 0.7), rgba(202, 165, 116, 0.7));
 }
 
 .detailCategory {
@@ -565,16 +807,29 @@
   align-items: flex-start;
   padding: var(--spacing-md);
   background-color: var(--color-bg-light);
-  border-radius: 8px;
-  border-left: 4px solid var(--color-primary);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
 }
 
+.certificationItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(39, 174, 96, 0.9), rgba(74, 144, 226, 0.8));
+}
+
 .certificationItem:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
 }
 
 .certName {
@@ -605,14 +860,27 @@
 .activityItem {
   padding: var(--spacing-lg);
   background-color: var(--color-bg-light);
-  border-radius: 8px;
-  border-left: 4px solid var(--color-primary);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activityItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(243, 156, 18, 0.9), rgba(202, 165, 116, 0.9));
 }
 
 .activityItem:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
 }
 
 .activityHeader {

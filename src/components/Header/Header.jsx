@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
   const name = "SeonBin's Portfolio";
 
   const menuItems = [
@@ -16,7 +16,8 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // 스크롤이 조금이라도 내려가면(=상단이 아니면) 일반 헤더로 전환
+      setIsAtTop(window.scrollY <= 5);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -40,7 +41,7 @@ function Header() {
   };
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isAtTop ? styles.atTop : styles.scrolled}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
           <a href="#top" className={styles.logoLink}>{name}</a>
