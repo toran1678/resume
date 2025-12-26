@@ -291,9 +291,62 @@ function Portfolio() {
       ]
     },
     {
+      title: "JSP 기반 맛집 커뮤니티 (맛스팟)",
+      period: "2025.03 ~ 2025.06",
+      teamSize: "1인 개인 프로젝트",
+      role: "JSP/Servlet 기반 웹 서비스 개발 및 DB 설계/연동",
+      description: "맛집 게시판(작성/수정/삭제), 댓글/좋아요, 카카오 지도 기반 위치 검색, 관리자 통계 대시보드까지 포함한 커뮤니티형 웹 서비스입니다.",
+      techStack: ["Java", "JSP/Servlet", "Apache Tomcat", "MySQL", "JDBC", "HTML/CSS/JavaScript", "Chart.js", "Kakao Map API", "JSTL", "Jakarta Mail"],
+      links: {
+        github: "https://github.com/toran1678/jsp-matjip-community",
+        demo: null,
+        readme: "https://github.com/toran1678/jsp-matjip-community#readme"
+      },
+      images: [
+        "images/projects/matjip/img1.png",
+        "images/projects/matjip/img2.png",
+        "images/projects/matjip/img3.png",
+        "images/projects/matjip/img4.png",
+        "images/projects/matjip/img5.png",
+      ],
+      highlights: [
+        "JSP/Servlet + DAO 패턴으로 게시물/댓글/좋아요 기능 CRUD 구현",
+        "카카오 지도 API 기반 위치 검색 및 지도 클러스터링 UI 구현",
+        "Chart.js로 관리자 대시보드(전체 통계/현황) 시각화 구성",
+        "SMTP(Jakarta Mail) 기반 이메일 인증/비밀번호 찾기 등 계정 관련 기능 구현",
+        "DB/SMTP/API 키 등 민감정보를 `config.properties`로 분리하고 `.gitignore`로 보호"
+      ]
+    },
+    {
+      title: "뉴스 정보 요약 및 분석 시스템",
+      period: "2024.09 ~ 2024.12",
+      teamSize: "1인 개인 프로젝트",
+      role: "뉴스 수집/분석 파이프라인 구현 및 자동 전송 기능 개발",
+      description: "뉴스 검색 → 요약 → 감성 분석을 하나의 흐름으로 구성하고, 결과를 카카오톡으로 전달할 수 있도록 만든 자동화 시스템입니다. 주가 예측(LSTM)은 별도의 기능으로 분리해 구현했습니다.",
+      techStack: ["Python", "NewsAPI", "Naver Search API", "OpenAI API", "KoBERT", "LSTM", "Kakao API"],
+      links: {
+        github: "https://github.com/toran1678/news-stock-analysis-system",
+        demo: null,
+        readme: "https://github.com/toran1678/news-stock-analysis-system#readme"
+      },
+      images: [
+        "images/projects/news-stock/img1.png",
+        "images/projects/news-stock/img2.png",
+        "images/projects/news-stock/img3.png",
+        "images/projects/news-stock/img4.png",
+      ],
+      highlights: [
+        "NewsAPI/네이버 검색 API를 활용해 키워드 기반 뉴스 수집 및 정제 파이프라인 구성",
+        "OpenAI를 활용한 뉴스 요약/핵심 내용 추출로 읽기 부담을 줄이고 인사이트 제공",
+        "KoBERT 기반 감성 분석으로 뉴스 톤(긍/부정) 지표를 산출해 추가 신호로 활용",
+        "별도 기능으로 LSTM 기반 시계열 주가 예측을 구현하고 결과를 리포트 형태로 출력",
+        "카카오 OAuth 연동 및 메시지 전송으로 분석 결과 자동 공유(알림) 기능 구현"
+      ]
+    },
+    {
       title: "Java Socket 기반 실시간 오목 게임",
       period: "2024.09 ~ 2024.12",
-      teamSize: "2인 팀 프로젝트",
+      teamSize: "1인 개인 프로젝트",
       role: "네트워크 통신 및 게임 로직 구현",
       description: "TCP 소켓 통신을 활용한 실시간 멀티플레이어 오목 게임. 채팅 시스템, 사용자 인증, 게임 전적 관리 등을 통합한 종합 게임 플랫폼입니다.",
       techStack: ["Java", "Socket", "MySQL", "Swing/AWT", "JavaMail API", "Gson"],
