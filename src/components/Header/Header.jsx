@@ -7,7 +7,62 @@ function Header() {
   const navId = useId();
   const name = "SeonBin's Portfolio";
 
-  const menuItems = [
+  // 데스크탑 메뉴 (5개 - 통합된 항목)
+  const desktopMenuItems = [
+    { 
+      id: 'about', 
+      label: '소개',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      )
+    },
+    { 
+      id: 'education', 
+      label: '교육',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+        </svg>
+      )
+    },
+    { 
+      id: 'skills', 
+      label: '기술',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+      )
+    },
+    { 
+      id: 'projects', 
+      label: '프로젝트',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+        </svg>
+      )
+    },
+    { 
+      id: 'experience', 
+      label: '경력',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+      )
+    },
+  ];
+
+  // 모바일 햄버거 메뉴 (7개 - 모든 항목)
+  const mobileMenuItems = [
     { 
       id: 'about', 
       label: '개인정보',
@@ -29,12 +84,14 @@ function Header() {
       )
     },
     { 
-      id: 'projects', 
-      label: '프로젝트',
+      id: 'activities', 
+      label: '교육/활동',
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
         </svg>
       )
     },
@@ -59,14 +116,12 @@ function Header() {
       )
     },
     { 
-      id: 'activities', 
-      label: '교육/활동',
+      id: 'projects', 
+      label: '프로젝트',
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-          <circle cx="9" cy="7" r="4"></circle>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
         </svg>
       )
     },
@@ -161,6 +216,22 @@ function Header() {
             </a>
           </div>
           <nav className={styles.nav}>
+            {/* 데스크탑 메뉴 (1025px 이상) */}
+            <ul className={styles.desktopMenu}>
+              {desktopMenuItems.map((item) => (
+                <li key={item.id} className={styles.menuItem}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => handleMenuClick(e, item.id)}
+                    className={styles.menuLink}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            {/* 햄버거 버튼 */}
             <button
               type="button"
               className={`${styles.menuToggle} ${isMobileMenuOpen ? styles.menuToggleOpen : ''}`}
@@ -171,6 +242,8 @@ function Header() {
             >
               <span className={styles.menuToggleIcon} aria-hidden="true" />
             </button>
+
+            {/* 모바일 드로어 메뉴 (1024px 이하) */}
             <div
               id={navId}
               className={`${styles.menuDrawer} ${isMobileMenuOpen ? styles.menuDrawerOpen : ''}`}
@@ -190,7 +263,7 @@ function Header() {
                 </button>
               </div>
               <ul className={styles.menu}>
-                {menuItems.map((item) => (
+                {mobileMenuItems.map((item) => (
                   <li key={item.id} className={styles.menuItem}>
                     <a
                       href={`#${item.id}`}

@@ -578,6 +578,75 @@ function Portfolio() {
             </div>
           </section>
 
+          {/* 교육/활동 */}
+          <section id="activities" className={styles.section}>
+            <h2 className={styles.sectionTitle}>교육/활동</h2>
+            <div className={styles.activitiesList}>
+              {activities.map((activity, index) => (
+                <div key={index} className={styles.activityItem}>
+                  <div className={styles.activityHeader}>
+                    <h3 className={styles.activityTitle}>{activity.title}</h3>
+                    <span className={styles.period}>{activity.period}</span>
+                  </div>
+                  <p className={styles.description}>{activity.description}</p>
+                  {activity.details && activity.details.length > 0 && (
+                    <ul className={styles.details}>
+                      {activity.details.map((detail, idx) => (
+                        <li key={idx} className={styles.detailItem}>{detail}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 기술 스택 */}
+          <section id="skills" className={styles.section}>
+            <h2 className={styles.sectionTitle}>기술 스택</h2>
+            <div className={styles.skillsPanel}>
+              {skillGroups.map((group) => (
+                <div key={group.title} className={styles.skillRow}>
+                  <div className={styles.skillRowHeader}>
+                    <span className={`${styles.skillGroupIcon} ${styles[`skillGroupIcon--${group.variant}`] ?? ''}`}>
+                      <SkillGroupIcon variant={group.variant} />
+                    </span>
+                    <span className={styles.skillRowTitle}>{group.title}</span>
+                  </div>
+                  <div className={styles.skillRowBody}>
+                    {group.items.map((item) => (
+                      <span
+                        key={`${group.title}-${item}`}
+                        className={`${styles.skillPill} ${styles[`skillPill--${skillPillVariants[item] ?? 'default'}`] ?? ''}`}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 자격증 */}
+          <section id="certifications" className={styles.section}>
+            <h2 className={styles.sectionTitle}>자격증</h2>
+            <div className={styles.certificationsList}>
+              {certifications.map((cert, index) => (
+                <div key={index} className={styles.certificationItem}>
+                  <div className={styles.left}>
+                    <h3 className={styles.certName}>{cert.name}</h3>
+                    <span className={styles.issuer}>{cert.issuer}</span>
+                  </div>
+                  <div className={styles.right}>
+                    <span className={styles.date}>{cert.date}</span>
+                    {cert.status && <span className={styles.status}>{cert.status}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* 프로젝트 */}
           <section id="projects" className={styles.section}>
             <h2 className={styles.sectionTitle}>프로젝트</h2>
@@ -659,75 +728,6 @@ function Portfolio() {
                         </button>
                       )}
                     </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 기술 스택 */}
-          <section id="skills" className={styles.section}>
-            <h2 className={styles.sectionTitle}>기술 스택</h2>
-            <div className={styles.skillsPanel}>
-              {skillGroups.map((group) => (
-                <div key={group.title} className={styles.skillRow}>
-                  <div className={styles.skillRowHeader}>
-                    <span className={`${styles.skillGroupIcon} ${styles[`skillGroupIcon--${group.variant}`] ?? ''}`}>
-                      <SkillGroupIcon variant={group.variant} />
-                    </span>
-                    <span className={styles.skillRowTitle}>{group.title}</span>
-                  </div>
-                  <div className={styles.skillRowBody}>
-                    {group.items.map((item) => (
-                      <span
-                        key={`${group.title}-${item}`}
-                        className={`${styles.skillPill} ${styles[`skillPill--${skillPillVariants[item] ?? 'default'}`] ?? ''}`}
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 자격증 */}
-          <section id="certifications" className={styles.section}>
-            <h2 className={styles.sectionTitle}>자격증</h2>
-            <div className={styles.certificationsList}>
-              {certifications.map((cert, index) => (
-                <div key={index} className={styles.certificationItem}>
-                  <div className={styles.left}>
-                    <h3 className={styles.certName}>{cert.name}</h3>
-                    <span className={styles.issuer}>{cert.issuer}</span>
-                  </div>
-                  <div className={styles.right}>
-                    <span className={styles.date}>{cert.date}</span>
-                    {cert.status && <span className={styles.status}>{cert.status}</span>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 교육/활동 */}
-          <section id="activities" className={styles.section}>
-            <h2 className={styles.sectionTitle}>교육/활동</h2>
-            <div className={styles.activitiesList}>
-              {activities.map((activity, index) => (
-                <div key={index} className={styles.activityItem}>
-                  <div className={styles.activityHeader}>
-                    <h3 className={styles.activityTitle}>{activity.title}</h3>
-                    <span className={styles.period}>{activity.period}</span>
-                  </div>
-                  <p className={styles.description}>{activity.description}</p>
-                  {activity.details && activity.details.length > 0 && (
-                    <ul className={styles.details}>
-                      {activity.details.map((detail, idx) => (
-                        <li key={idx} className={styles.detailItem}>{detail}</li>
-                      ))}
-                    </ul>
                   )}
                 </div>
               ))}
