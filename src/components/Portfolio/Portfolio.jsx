@@ -7,8 +7,8 @@ function Portfolio() {
   // 배너 데이터
   const name = "김선빈";
   const bannerSubtitle = "프론트엔드 개발자 포트폴리오";
-  const bannerGreeting = "안녕하세요.";
-  const bannerDescription = "다양한 기술을 배우고 적용하며 성장하는 개발자 ";
+  const bannerDescriptionLine1 = "다양한 기술을 배우고 적용하며 성장하는";
+  const bannerDescriptionLine2 = "개발자 ";
   const bannerName = name;
   const bannerEnding = "입니다.";
 
@@ -127,7 +127,7 @@ function Portfolio() {
     {
       title: "DevOps",
       variant: "devops",
-      items: ["DevOps", "Docker", "Git", "GitHub"]
+      items: ["Docker", "Git", "GitHub"]
     },
     {
       title: "Tools",
@@ -151,7 +151,6 @@ function Portfolio() {
     Redis: "redis",
     Git: "git",
     GitHub: "github",
-    DevOps: "devops",
     Docker: "docker",
     Figma: "figma",
     Obsidian: "obsidian",
@@ -432,9 +431,9 @@ function Portfolio() {
             <span className={styles.cursor}>|</span>
           </p>
           <div className={styles.bannerContent}>
-            <p className={styles.bannerGreeting}>{bannerGreeting}</p>
+            <p className={styles.bannerDescription}>{bannerDescriptionLine1}</p>
             <p className={styles.bannerDescription}>
-              {bannerDescription} <span className={styles.bannerNameInline}>{bannerName}</span>{bannerEnding}
+              {bannerDescriptionLine2}<span className={styles.bannerNameInline}>{bannerName}</span>{bannerEnding}
             </p>
           </div>
           <button 
