@@ -109,8 +109,8 @@ function Portfolio() {
     // 실제 경력으로 교체하세요
   ];
 
-  // 기술 스택 로고 (LogoLoop용)
-  const techLogos = [
+  // 기술 스택 로고 (LogoLoop용) - 주석 처리
+  /* const techLogos = [
     { node: <SiReact />, title: "React", href: "https://react.dev" },
     { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/ko/docs/Web/JavaScript" },
     { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
@@ -125,7 +125,7 @@ function Portfolio() {
     { node: <SiDocker />, title: "Docker", href: "https://www.docker.com" },
     { node: <SiNginx />, title: "Nginx", href: "https://www.nginx.com" },
     { node: <SiRedis />, title: "Redis", href: "https://redis.io" },
-  ];
+  ]; */
 
   // 학력
   const education = [
@@ -877,7 +877,7 @@ function Portfolio() {
       </div>
 
       {/* 기술 스택 로고 루프 */}
-      <div style={{ 
+      {/* <div style={{ 
         padding: '60px 0', 
         background: '#f3f4f6',
         display: 'flex', 
@@ -902,7 +902,7 @@ function Portfolio() {
             ariaLabel="기술 스택"
           />
         </div>
-      </div>
+      </div> */}
 
       {/* 이미지 갤러리 모달 */}
       {selectedProjectImages && (
