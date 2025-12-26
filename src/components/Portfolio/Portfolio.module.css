@@ -1985,3 +1985,77 @@
   }
 }
 
+/* ===========================
+   스크롤 애니메이션
+   =========================== */
+
+/* 기본 숨김 상태 */
+.scrollReveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* 보이는 상태 */
+.scrollRevealVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 애니메이션 지연 옵션 (여러 요소를 순차적으로 나타낼 때) */
+.scrollRevealDelay1 {
+  transition-delay: 0.1s;
+}
+
+.scrollRevealDelay2 {
+  transition-delay: 0.2s;
+}
+
+.scrollRevealDelay3 {
+  transition-delay: 0.3s;
+}
+
+.scrollRevealDelay4 {
+  transition-delay: 0.4s;
+}
+
+.scrollRevealDelay5 {
+  transition-delay: 0.5s;
+}
+
+/* 좌측에서 나타나는 애니메이션 */
+.scrollRevealLeft {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scrollRevealLeft.scrollRevealVisible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 우측에서 나타나는 애니메이션 */
+.scrollRevealRight {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scrollRevealRight.scrollRevealVisible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 확대되면서 나타나는 애니메이션 */
+.scrollRevealScale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scrollRevealScale.scrollRevealVisible {
+  opacity: 1;
+  transform: scale(1);
+}
+

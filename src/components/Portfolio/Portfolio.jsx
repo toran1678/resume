@@ -2,32 +2,56 @@ import { useEffect, useState, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from './Portfolio.module.css';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import LogoLoop from '../LogoLoop/LogoLoop';
+import TextType from '../TextType/TextType';
+import { 
+  SiReact, 
+  SiJavascript, 
+  SiTypescript, 
+  SiHtml5, 
+  SiCss3, 
+  SiPython, 
+  SiNodedotjs, 
+  SiMysql, 
+  SiGit, 
+  SiDocker, 
+  SiRedis,
+  SiFastapi,
+  SiNginx,
+  SiVite
+} from 'react-icons/si';
 
 function Portfolio() {
   // 배너 데이터
   const name = "김선빈";
   const bannerSubtitle = "프론트엔드 개발자 포트폴리오";
-  const bannerDescriptionLine1 = "다양한 기술을 배우고 적용하며 성장하는";
-  const bannerDescriptionLine2 = "개발자 ";
   const bannerName = name;
   const bannerEnding = "입니다.";
-
-  // 타이핑 애니메이션 (프론트엔드 개발자 포트폴리오)
-  const [displayedSubtitle, setDisplayedSubtitle] = useState('');
   
-  useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex < bannerSubtitle.length) {
-        setDisplayedSubtitle(bannerSubtitle.slice(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 100); // 타이핑 속도 (ms)
+  // TextType용 텍스트 배열
+  const typingTexts = [
+    "다양한 기술을 배우고 적용하며 성장하는",
+    "끊임없이 도전하는",
+    "새로운 것을 탐구하는"
+  ];
 
-    return () => clearInterval(typingInterval);
-  }, [bannerSubtitle]);
+  // 타이핑 애니메이션 (프론트엔드 개발자 포트폴리오) - 주석 처리
+  // const [displayedSubtitle, setDisplayedSubtitle] = useState('');
+  
+  // useEffect(() => {
+  //   let currentIndex = 0;
+  //   const typingInterval = setInterval(() => {
+  //     if (currentIndex < bannerSubtitle.length) {
+  //       setDisplayedSubtitle(bannerSubtitle.slice(0, currentIndex + 1));
+  //       currentIndex++;
+  //     } else {
+  //       clearInterval(typingInterval);
+  //     }
+  //   }, 100); // 타이핑 속도 (ms)
+
+  //   return () => clearInterval(typingInterval);
+  // }, [bannerSubtitle]);
 
   // 개인정보
   const email = "toran16784@gmail.com";
@@ -83,6 +107,24 @@ function Portfolio() {
       ]
     }
     // 실제 경력으로 교체하세요
+  ];
+
+  // 기술 스택 로고 (LogoLoop용)
+  const techLogos = [
+    { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/ko/docs/Web/JavaScript" },
+    { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    { node: <SiHtml5 />, title: "HTML5", href: "https://developer.mozilla.org/ko/docs/Web/HTML" },
+    { node: <SiCss3 />, title: "CSS3", href: "https://developer.mozilla.org/ko/docs/Web/CSS" },
+    { node: <SiPython />, title: "Python", href: "https://www.python.org" },
+    { node: <SiVite />, title: "Vite", href: "https://vitejs.dev" },
+    { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
+    { node: <SiFastapi />, title: "FastAPI", href: "https://fastapi.tiangolo.com" },
+    { node: <SiMysql />, title: "MySQL", href: "https://www.mysql.com" },
+    { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
+    { node: <SiDocker />, title: "Docker", href: "https://www.docker.com" },
+    { node: <SiNginx />, title: "Nginx", href: "https://www.nginx.com" },
+    { node: <SiRedis />, title: "Redis", href: "https://redis.io" },
   ];
 
   // 학력
@@ -399,6 +441,15 @@ function Portfolio() {
     );
   }, [selectedProjectImages]);
 
+  // 스크롤 애니메이션을 위한 Hooks (triggerOnce: false로 설정하여 스크롤 올릴 때도 작동)
+  const [personalInfoRef, personalInfoVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+  const [educationRef, educationVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+  const [activitiesRef, activitiesVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+  const [skillsRef, skillsVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+  const [certificationsRef, certificationsVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+  const [projectsRef, projectsVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+  const [experienceRef, experienceVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+
   // ESC 키로 모달 닫기
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -427,13 +478,23 @@ function Portfolio() {
         <div className={styles.bannerContainer}>
           <h1 className={styles.bannerName}>- {bannerName} -</h1>
           <p className={styles.bannerSubtitle}>
-            {displayedSubtitle}
-            <span className={styles.cursor}>|</span>
+            {bannerSubtitle}
+            {/* <span className={styles.cursor}>|</span> */}
           </p>
           <div className={styles.bannerContent}>
-            <p className={styles.bannerDescription}>{bannerDescriptionLine1}</p>
             <p className={styles.bannerDescription}>
-              {bannerDescriptionLine2}<span className={styles.bannerNameInline}>{bannerName}</span>{bannerEnding}
+              <TextType 
+                text={typingTexts}
+                typingSpeed={75}
+                pauseDuration={1500}
+                deletingSpeed={50}
+                showCursor={true}
+                cursorCharacter="_"
+                as="span"
+              />
+            </p>
+            <p className={styles.bannerDescription}>
+              개발자 <span className={styles.bannerNameInline}>{bannerName}</span>{bannerEnding}
             </p>
           </div>
           <button 
@@ -462,7 +523,11 @@ function Portfolio() {
       </section>
 
       {/* 개인정보 */}
-      <section id="about" className={styles.personalInfo}>
+      <section 
+        id="about" 
+        ref={personalInfoRef}
+        className={`${styles.personalInfo} ${styles.scrollReveal} ${personalInfoVisible ? styles.scrollRevealVisible : ''}`}
+      >
         <div className={styles.container}>
           <h2 className={styles.sectionTitle}>개인정보</h2>
           <div className={styles.personalInfoContent}>
@@ -556,7 +621,11 @@ function Portfolio() {
       <div className={styles.content}>
         <div className={styles.container}>
           {/* 학력 */}
-          <section id="education" className={styles.section}>
+          <section 
+            id="education" 
+            ref={educationRef}
+            className={`${styles.section} ${styles.scrollReveal} ${educationVisible ? styles.scrollRevealVisible : ''}`}
+          >
             <h2 className={styles.sectionTitle}>학력</h2>
             <div className={styles.educationList}>
               {education.map((edu, index) => (
@@ -578,7 +647,11 @@ function Portfolio() {
           </section>
 
           {/* 교육/활동 */}
-          <section id="activities" className={styles.section}>
+          <section 
+            id="activities" 
+            ref={activitiesRef}
+            className={`${styles.section} ${styles.scrollReveal} ${activitiesVisible ? styles.scrollRevealVisible : ''}`}
+          >
             <h2 className={styles.sectionTitle}>교육/활동</h2>
             <div className={styles.activitiesList}>
               {activities.map((activity, index) => (
@@ -601,7 +674,11 @@ function Portfolio() {
           </section>
 
           {/* 기술 스택 */}
-          <section id="skills" className={styles.section}>
+          <section 
+            id="skills" 
+            ref={skillsRef}
+            className={`${styles.section} ${styles.scrollReveal} ${skillsVisible ? styles.scrollRevealVisible : ''}`}
+          >
             <h2 className={styles.sectionTitle}>기술 스택</h2>
             <div className={styles.skillsPanel}>
               {skillGroups.map((group) => (
@@ -628,7 +705,11 @@ function Portfolio() {
           </section>
 
           {/* 자격증 */}
-          <section id="certifications" className={styles.section}>
+          <section 
+            id="certifications" 
+            ref={certificationsRef}
+            className={`${styles.section} ${styles.scrollReveal} ${certificationsVisible ? styles.scrollRevealVisible : ''}`}
+          >
             <h2 className={styles.sectionTitle}>자격증</h2>
             <div className={styles.certificationsList}>
               {certifications.map((cert, index) => (
@@ -647,7 +728,11 @@ function Portfolio() {
           </section>
 
           {/* 프로젝트 */}
-          <section id="projects" className={styles.section}>
+          <section 
+            id="projects" 
+            ref={projectsRef}
+            className={`${styles.section} ${styles.scrollReveal} ${projectsVisible ? styles.scrollRevealVisible : ''}`}
+          >
             <h2 className={styles.sectionTitle}>프로젝트</h2>
             <div className={styles.projectsList}>
               {projects.map((project, index) => (
@@ -734,7 +819,11 @@ function Portfolio() {
           </section>
 
           {/* 경력 */}
-          <section id="experience" className={styles.section}>
+          <section 
+            id="experience" 
+            ref={experienceRef}
+            className={`${styles.section} ${styles.scrollReveal} ${experienceVisible ? styles.scrollRevealVisible : ''}`}
+          >
             <h2 className={styles.sectionTitle}>경력</h2>
             <div className={styles.experienceList}>
               {experience.map((exp, index) => (
@@ -784,6 +873,34 @@ function Portfolio() {
               ))}
             </div>
           </section>
+        </div>
+      </div>
+
+      {/* 기술 스택 로고 루프 */}
+      <div style={{ 
+        padding: '60px 0', 
+        background: '#f3f4f6',
+        display: 'flex', 
+        justifyContent: 'center',
+        overflow: 'hidden'
+      }}>
+        <div style={{ 
+          width: '100%',
+          maxWidth: '1400px',
+          overflow: 'hidden'
+        }}>
+          <LogoLoop
+            logos={techLogos}
+            speed={100}
+            direction="left"
+            logoHeight={56}
+            gap={60}
+            hoverSpeed={0}
+            scaleOnHover
+            fadeOut={true}
+            fadeOutColor="#f3f4f6"
+            ariaLabel="기술 스택"
+          />
         </div>
       </div>
 
