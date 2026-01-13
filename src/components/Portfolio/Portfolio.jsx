@@ -56,7 +56,7 @@ function Portfolio() {
   // 개인정보
   const email = "toran16784@gmail.com";
   const location = "경기 안양시";
-  const portfolio = "https://toran1678.github.io/my-blog";
+  const portfolio = "https://github.com/toran1678";
   const birthYear = 2001;
   const birthDate = "4월 19일";
   //const age = 24;
@@ -65,49 +65,48 @@ function Portfolio() {
   const bannerImagePath = import.meta.env.BASE_URL + "images/banner.png";
 
   // 경력
-  const experience = [
-    {
-      company: "(주) 예시회사",
-      logo: "images/banner.png", // 임시 배너 이미지
-      period: "2024.01 ~ 재직중",
-      duration: "1년",
-      description: "혁신적인 기술로 세상을 변화시키는 IT 기업",
-      roles: ["Frontend 개발", "Backend 개발"],
-      projects: [
-        {
-          title: "사용자 대시보드 개발",
-          period: "2024년 상반기",
-          description: "React 기반의 관리자 대시보드 전체 개발 및 성능 최적화"
-        },
-        {
-          title: "API 서버 구축",
-          period: "2024년 하반기",
-          description: "RESTful API 설계 및 FastAPI를 활용한 백엔드 서버 구축"
-        }
-      ]
-    },
-    {
-      company: "(주) 이전회사",
-      logo: "images/banner.png", // 임시 배너 이미지
-      period: "2022.03 ~ 2023.12",
-      duration: "1년 9개월",
-      description: "고객 중심의 서비스를 제공하는 스타트업",
-      roles: ["웹 개발", "데이터베이스 설계"],
-      projects: [
-        {
-          title: "쇼핑몰 웹사이트 리뉴얼",
-          period: "2022년 하반기 ~ 2023년 상반기",
-          description: "사용자 경험 개선을 위한 전체 UI/UX 리뉴얼 및 반응형 웹 구현"
-        },
-        {
-          title: "재고 관리 시스템 개발",
-          period: "2023년 하반기",
-          description: "MySQL 기반의 재고 관리 시스템 설계 및 구현"
-        }
-      ]
-    }
-    // 실제 경력으로 교체하세요
-  ];
+  // const experience = [
+  //   {
+  //     company: "(주) 예시회사",
+  //     logo: "images/banner.png", // 임시 배너 이미지
+  //     period: "2024.01 ~ 재직중",
+  //     duration: "1년",
+  //     description: "혁신적인 기술로 세상을 변화시키는 IT 기업",
+  //     roles: ["Frontend 개발", "Backend 개발"],
+  //     projects: [
+  //       {
+  //         title: "사용자 대시보드 개발",
+  //         period: "2024년 상반기",
+  //         description: "React 기반의 관리자 대시보드 전체 개발 및 성능 최적화"
+  //       },
+  //       {
+  //         title: "API 서버 구축",
+  //         period: "2024년 하반기",
+  //         description: "RESTful API 설계 및 FastAPI를 활용한 백엔드 서버 구축"
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     company: "(주) 이전회사",
+  //     logo: "images/banner.png", // 임시 배너 이미지
+  //     period: "2022.03 ~ 2023.12",
+  //     duration: "1년 9개월",
+  //     description: "고객 중심의 서비스를 제공하는 스타트업",
+  //     roles: ["웹 개발", "데이터베이스 설계"],
+  //     projects: [
+  //       {
+  //         title: "쇼핑몰 웹사이트 리뉴얼",
+  //         period: "2022년 하반기 ~ 2023년 상반기",
+  //         description: "사용자 경험 개선을 위한 전체 UI/UX 리뉴얼 및 반응형 웹 구현"
+  //       },
+  //       {
+  //         title: "재고 관리 시스템 개발",
+  //         period: "2023년 하반기",
+  //         description: "MySQL 기반의 재고 관리 시스템 설계 및 구현"
+  //       }
+  //     ]
+  //   }
+  // ];
 
   // 기술 스택 로고 (LogoLoop용) - 주석 처리
   /* const techLogos = [
@@ -501,7 +500,7 @@ function Portfolio() {
   const [skillsRef, skillsVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
   const [certificationsRef, certificationsVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
   const [projectsRef, projectsVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
-  const [experienceRef, experienceVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
+  // const [experienceRef, experienceVisible] = useScrollReveal({ threshold: 0.2, triggerOnce: false });
 
   // ESC 키로 모달 닫기
   useEffect(() => {
@@ -872,7 +871,7 @@ function Portfolio() {
           </section>
 
           {/* 경력 */}
-          <section 
+          {/* <section 
             id="experience" 
             ref={experienceRef}
             className={`${styles.section} ${styles.scrollReveal} ${experienceVisible ? styles.scrollRevealVisible : ''}`}
@@ -925,7 +924,7 @@ function Portfolio() {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
 
